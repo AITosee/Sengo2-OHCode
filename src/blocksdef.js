@@ -94,27 +94,6 @@ const SENGO2_CARD_RED_LIGHT = "红灯";
 const SENGO2_CARD_SPEED_40 = "限速40";
 const SENGO2_CARD_SPEED_60 = "限速60";
 const SENGO2_CARD_SPEED_80 = "限速80";
-const SENGO2_CARD_SYMBOL = "符号卡片";
-const SENGO2_CARD_CHECK = "✔";
-const SENGO2_CARD_CROSS = "☓";
-const SENGO2_CARD_CIRCLE = "◯";
-const SENGO2_CARD_SQUARE = "☐";
-const SENGO2_CARD_TRIANGLE = "△";
-const SENGO2_CARD_PLUS = "+";
-const SENGO2_CARD_MINUS = "-";
-const SENGO2_CARD_DIVIDE = "÷";
-const SENGO2_CARD_EQUAL = "=";
-const SENGO2_CARD_NUMBER = "数字卡片";
-const SENGO2_CARD_1 = "1";
-const SENGO2_CARD_2 = "2";
-const SENGO2_CARD_3 = "3";
-const SENGO2_CARD_4 = "4";
-const SENGO2_CARD_5 = "5";
-const SENGO2_CARD_6 = "6";
-const SENGO2_CARD_7 = "7";
-const SENGO2_CARD_8 = "8";
-const SENGO2_CARD_9 = "9";
-const SENGO2_CARD_0 = "0";
 
 // Sengo2模块文本
 const SENGO2_BEGIN_MESSAGE0 = "初始化  Sengo2  端口 %1 地址 %2";
@@ -127,9 +106,7 @@ const SENGO2_COLORPARAM_MESSAGE0 =
     "设置  Sengo2  %1  区域中心 横坐标 %2 纵坐标 %3 宽度 %4 高度 %5 参数组 %6";
 const SENGO2_BOLDPARAM_MESSAGE0 =
     "设置  Sengo2  %1  最小宽度 %2 高度 %3 检测标签 %4 参数组 %5";
-const SENGO2_VISIONPARAM_MESSAGE0 =
-    "设置  Sengo2  %1  参数1 %2 参数2 %3 参数3 %4 参数4 %5 参数5 %6 参数组 %7";
-const SENGO2_CAMERA_SET_AWB_MESSAGE0 = "设置  Sengo2  白平衡模式 %1";
+
 const SENGO2_DETECTED_MESSAGE0 = "  Sengo2  %1    检测结果数量";
 const SENGO2_GET_VALUE_MESSAGE0 = "  Sengo2  %1  %2 结果%3的";
 const SENGO2_COLORRCGVALUE_MESSAGE0 = "  Sengo2  颜色识别  %1 结果 %2的";
@@ -388,75 +365,6 @@ Blockly.Blocks["Sengo2SetColorParam"] = {
     },
 };
 
-Blockly.Blocks["Sengo2SetVisionParam"] = {
-    init: function () {
-        this.jsonInit({
-            colour: Sengo_SetupMode_Color,
-            args0: [
-                {
-                    name: "VisionType",
-                    options: [
-                        [
-                            SENGO2_VISION_VISIONCUSTOM,
-                            "sengo2_vision_e.kVisionCustom",
-                        ],
-                        [
-                            SENGO2_VISION_VISIONCOLOR,
-                            "sengo2_vision_e.kVisionColor",
-                        ],
-                        [
-                            SENGO2_VISION_VISIONBLOB,
-                            "sengo2_vision_e.kVisionBlob",
-                        ],
-                        [
-                            SENGO2_VISION_VISIONLEARNING,
-                            "sengo2_vision_e.kVisionLearning",
-                        ],
-                        [
-                            SENGO2_VISION_VISIONFACE,
-                            "sengo2_vision_e.kVisionFace",
-                        ],
-                    ],
-                    type: "field_dropdown",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "x",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "y",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "w",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "h",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "lable",
-                },
-                {
-                    check: "Number",
-                    type: "input_value",
-                    name: "objid",
-                },
-            ],
-            inputsInline: true,
-            nextStatement: null,
-            previousStatement: null,
-            message0: SENGO2_VISIONPARAM_MESSAGE0,
-        });
-    },
-};
 
 Blockly.Blocks["Sengo2SetBlodParam"] = {
     init: function () {
@@ -521,41 +429,6 @@ Blockly.Blocks["Sengo2SetBlodParam"] = {
     },
 };
 
-Blockly.Blocks["Sengo2CameraSetAwb"] = {
-    init: function () {
-        this.jsonInit({
-            colour: Sengo_SetupMode_Color,
-            args0: [
-                {
-                    name: "awb",
-                    options: [
-                        [
-                            SENGO2_AWB_AUTO,
-                            "sentry_camera_white_balance_e.kAutoWhiteBalance",
-                        ],
-                        [
-                            SENGO2_AWB_LOCK,
-                            "sentry_camera_white_balance_e.kLockWhiteBalance",
-                        ],
-                        [
-                            SENGO2_AWB_WHITE_LIGHT,
-                            "sentry_camera_white_balance_e.kWhiteLight",
-                        ],
-                        [
-                            SENGO2_AWB_YELLOW_LIGHT,
-                            "sentry_camera_white_balance_e.kYellowLight",
-                        ],
-                    ],
-                    type: "field_dropdown",
-                },
-            ],
-            nextStatement: null,
-            previousStatement: null,
-            message0: SENGO2_CAMERA_SET_AWB_MESSAGE0,
-            inputsInline: true,
-        });
-    },
-};
 
 Blockly.Blocks["Sengo2Detected"] = {
     init: function () {
@@ -982,38 +855,7 @@ Blockly.Blocks["Sengo2DetectedCard"] = {
                         [
                             SENGO2_CARD_SPEED_80,
                             "sentry2_card_label_e.kCardSpeed80",
-                        ],
-                        [SENGO2_CARD_CHECK, "sentry2_card_label_e.kCardCheck"],
-                        [SENGO2_CARD_CROSS, "sentry2_card_label_e.kCardCross"],
-                        [
-                            SENGO2_CARD_CIRCLE,
-                            "sentry2_card_label_e.kCardCircle",
-                        ],
-                        [
-                            SENGO2_CARD_SQUARE,
-                            "sentry2_card_label_e.kCardSquare",
-                        ],
-                        [
-                            SENGO2_CARD_TRIANGLE,
-                            "sentry2_card_label_e.kCardTriangle",
-                        ],
-                        [SENGO2_CARD_PLUS, "sentry2_card_label_e.kCardPlus"],
-                        [SENGO2_CARD_MINUS, "sentry2_card_label_e.kCardMinus"],
-                        [
-                            SENGO2_CARD_DIVIDE,
-                            "sentry2_card_label_e.kCardDivide",
-                        ],
-                        [SENGO2_CARD_EQUAL, "sentry2_card_label_e.kCardEqual"],
-                        [SENGO2_CARD_1, "sentry2_card_label_e.kCardOne"],
-                        [SENGO2_CARD_2, "sentry2_card_label_e.kCardTwo"],
-                        [SENGO2_CARD_3, "sentry2_card_label_e.kCardThree"],
-                        [SENGO2_CARD_4, "sentry2_card_label_e.kCardFour"],
-                        [SENGO2_CARD_5, "sentry2_card_label_e.kCardFive"],
-                        [SENGO2_CARD_6, "sentry2_card_label_e.kCardSix"],
-                        [SENGO2_CARD_7, "sentry2_card_label_e.kCardSeven"],
-                        [SENGO2_CARD_8, "sentry2_card_label_e.kCardEight"],
-                        [SENGO2_CARD_9, "sentry2_card_label_e.kCardNine"],
-                        [SENGO2_CARD_0, "sentry2_card_label_e.kCardZero"],
+                        ]
                     ],
                     type: "field_dropdown",
                 },
@@ -1129,16 +971,6 @@ pythonGenerator.forBlock["Sengo2LedSetColor"] = function (block) {
     return code;
 };
 
-pythonGenerator.forBlock["Sengo2CameraSetAwb"] = function (block) {
-    var awb = block.getFieldValue("awb");
-
-    var code = "sengo2" + ".CameraSetAwb(" + awb + ")\n";
-
-    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
-
-    return code;
-};
-
 // 启用
 pythonGenerator.forBlock["Sengo2VisionSetStatus"] = function (block) {
     var VisionStatus = block.getFieldValue("VisionStatus");
@@ -1235,51 +1067,6 @@ pythonGenerator.forBlock["Sengo2SetBlodParam"] = function (block) {
     return code;
 };
 
-//  参数
-pythonGenerator.forBlock["Sengo2SetVisionParam"] = function (block) {
-    var x =
-        pythonGenerator.valueToCode(block, "x", pythonGenerator.ORDER_NONE) ||
-        "1";
-    var y =
-        pythonGenerator.valueToCode(block, "y", pythonGenerator.ORDER_NONE) ||
-        "1";
-    var w =
-        pythonGenerator.valueToCode(block, "w", pythonGenerator.ORDER_NONE) ||
-        "1";
-    var h =
-        pythonGenerator.valueToCode(block, "h", pythonGenerator.ORDER_NONE) ||
-        "1";
-    var lable =
-        pythonGenerator.valueToCode(
-            block,
-            "lable",
-            pythonGenerator.ORDER_NONE,
-        ) || "1";
-    var objid = pythonGenerator.valueToCode(
-        block,
-        "objid",
-        pythonGenerator.ORDER_ATOMIC,
-    );
-    var code =
-        "sengo2" +
-        ".SetParam(" +
-        "sengo2_vision_e.kVisionColor, [" +
-        x +
-        ", " +
-        y +
-        ", " +
-        w +
-        ", " +
-        h +
-        ", " +
-        lable +
-        "]" +
-        ", " +
-        objid +
-        ")\n";
-
-    return code;
-};
 
 pythonGenerator.forBlock["Sengo2Detected"] = function (block) {
     var VisionType = block.getFieldValue("VisionType");

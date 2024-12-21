@@ -120,60 +120,6 @@
       }
     },
     {
-      "kind": "BLOCK",
-      "type": "Sengo2SetVisionParam",
-      "inputs": {
-        "x": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 0
-            }
-          }
-        },
-        "y": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 0
-            }
-          }
-        },
-        "w": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 0
-            }
-          }
-        },
-        "h": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 0
-            }
-          }
-        },
-        "lable": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 0
-            }
-          }
-        },
-        "objid": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 1
-            }
-          }
-        }
-      }
-    },
-    {
       "kind": "LABEL",
       "text": "运行模块"
     },
