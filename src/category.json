@@ -1,0 +1,315 @@
+{
+  "kind": "CATEGORY",
+  "name": "Sengo2视觉传感器",
+  "colour": "#EF5411",
+  "contents": [
+    {
+      "kind": "LABEL",
+      "text": "设置模块"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2Begin"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2LedSetColor",
+      "inputs": {
+        "level": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2VisionSetStatus"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2SetParamNum",
+      "inputs": {
+        "max_num": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2SetColorParam",
+      "inputs": {
+        "x": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 50
+            }
+          }
+        },
+        "y": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 50
+            }
+          }
+        },
+        "w": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 3
+            }
+          }
+        },
+        "h": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2SetBlodParam",
+      "inputs": {
+        "w": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 3
+            }
+          }
+        },
+        "h": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 4
+            }
+          }
+        },
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2SetVisionParam",
+      "inputs": {
+        "x": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "y": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "w": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "h": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "lable": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 0
+            }
+          }
+        },
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "LABEL",
+      "text": "运行模块"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2Detected"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2ColorRcgValue",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2GetValue",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2QrRcgValue",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2GetQrCodeValue"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2LineValue",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2GetValueNomal",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2DetectedColor",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2DetectedBlob",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2DetectedCard",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2Detected20Class",
+      "inputs": {
+        "objid": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    }
+  ]
+}
