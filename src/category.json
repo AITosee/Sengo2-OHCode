@@ -31,7 +31,7 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2SetParamNum",
+      "type": "Sengo2VisionSetParamNum",
       "inputs": {
         "max_num": {
           "shadow": {
@@ -45,7 +45,7 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2SetColorParam",
+      "type": "Sengo2VisionColorSetParam",
       "inputs": {
         "x": {
           "shadow": {
@@ -79,7 +79,7 @@
             }
           }
         },
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -91,7 +91,7 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2SetBlodParam",
+      "type": "Sengo2VisionBlobSetParam",
       "inputs": {
         "w": {
           "shadow": {
@@ -109,7 +109,56 @@
             }
           }
         },
-        "objid": {
+        "index": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      },
+      "fields": {
+        "lable": "sentry_color_label_e.kColorRed"
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2VisionSetBlobNum",
+      "inputs": {
+        "num": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2VisionSetAprilTagMode"
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2VisionSetLineNum",
+      "inputs": {
+        "num": {
+          "shadow": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "kind": "BLOCK",
+      "type": "Sengo2VisionSetParam",
+      "inputs": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -125,13 +174,13 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2Detected"
+      "type": "Sengo2VisionDetectedCount"
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2ColorRcgValue",
+      "type": "Sengo2VisionObjColor",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -145,7 +194,7 @@
       "kind": "BLOCK",
       "type": "Sengo2GetValue",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -157,9 +206,9 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2QrRcgValue",
+      "type": "Sengo2VisionObjLine",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -171,13 +220,9 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2GetQrCodeValue"
-    },
-    {
-      "kind": "BLOCK",
-      "type": "Sengo2LineValue",
+      "type": "Sengo2VisionObjQr",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -189,23 +234,13 @@
     },
     {
       "kind": "BLOCK",
-      "type": "Sengo2GetValueNomal",
-      "inputs": {
-        "objid": {
-          "shadow": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 1
-            }
-          }
-        }
-      }
+      "type": "Sengo2GetQrValue"
     },
     {
       "kind": "BLOCK",
       "type": "Sengo2DetectedColor",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -219,7 +254,7 @@
       "kind": "BLOCK",
       "type": "Sengo2DetectedBlob",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -227,13 +262,16 @@
             }
           }
         }
+      },
+      "fields": {
+        "vision_card_obj": "sentry_color_label_e.kColorRed"
       }
     },
     {
       "kind": "BLOCK",
       "type": "Sengo2DetectedCard",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
@@ -247,7 +285,7 @@
       "kind": "BLOCK",
       "type": "Sengo2Detected20Class",
       "inputs": {
-        "objid": {
+        "index": {
           "shadow": {
             "type": "math_number",
             "fields": {
