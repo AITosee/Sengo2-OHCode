@@ -34,7 +34,6 @@ jobs:
           echo "PREVIOUS_VERSION=$PREVIOUS_PACKAGE_JSON" >> $GITHUB_ENV
           echo "CURRENT_VERSION=$CURRENT_PACKAGE_JSON" >> $GITHUB_ENV
           echo "PACKAGE_NAME=$PACKAGE_NAME_JSON" >> $GITHUB_ENV
-          echo "PACKAGE_NAME_JSON=$RELEASE_NAME" >> $GITHUB_ENV
           
           tree
           
@@ -53,7 +52,7 @@ jobs:
           npm run build:dev
           cd dist 
           tree
-          cp -rv ${RELEASE_NAME}.zip ${GITHUB_WORKSPACE}
+          cp -rv ${PACKAGE_NAME}.zip ${GITHUB_WORKSPACE}
           rm -rf ./*
           
       - name: Create Release and Upload Release Asset
@@ -67,7 +66,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-           ${{ env.RELEASE_NAME }}.zip
+           ${{ env.PACKAGE_NAME }}.zip
 
 
           
