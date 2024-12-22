@@ -6,6 +6,20 @@ export const Sengo2Begin = function (block) {
 
     pythonGenerator.definitions_["import_iic"] = "from machine import I2C";
     pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
+
+    pythonGenerator.definitions_["sengo2_vision_e"] = `class sengo2_vision_e:
+    kVisionColor = 1
+    kVisionBlob = 2
+    kVisionAprilTag = 3
+    kVisionLine = 4
+    kVisionLearning = 5
+    kVisionCard = 6
+    kVisionFace = 7
+    kVision20Classes = 8
+    kVisionQrCode = 9
+    kVisionMotionDetect = 11
+    kVisionMaxType = 12`;
+
     pythonGenerator.definitions_["init_IIC"] = "i2c0 = I2C(0,freq=400000)";
     pythonGenerator.definitions_["init_Sengo2"] =
         `sengo2  = Sentry(0x7, ${addr} )`;
@@ -137,6 +151,41 @@ export const Sengo2VisionBlobSetParam = function (block) {
     return code;
 };
 
+export const Sengo2VisionSetBlobNum = function (block) {
+    var dropdown_vision_obj = this.getFieldValue("vision_obj");
+    var input_mode = pythonGenerator.valueToCode(
+        this,
+        "num",
+        pythonGenerator.ORDER_ATOMIC,
+    );
+
+    var code = `sengo2.VisionSetMode(${dropdown_vision_obj},${input_mode});\n`;
+
+    return code;
+};
+
+export const Sengo2VisionSetAprilTagMode = function (block) {
+    var dropdown_vision_obj = block.getFieldValue("vision_obj");
+    var input_mode = block.getFieldValue("mode");
+
+    var code = `sengo2.VisionSetMode(${dropdown_vision_obj},${input_mode});\n`;
+
+    return code;
+};
+
+export const Sengo2VisionSetLineNum = function (block) {
+    var dropdown_vision_obj = this.getFieldValue("vision_obj");
+    var input_mode = pythonGenerator.valueToCode(
+        this,
+        "num",
+        pythonGenerator.ORDER_ATOMIC,
+    );
+
+    var code = `sengo2.VisionSetMode(${dropdown_vision_obj},${input_mode});\n`;
+
+    return code;
+};
+
 // Face   参数
 export const Sengo2VisionSetParam = function (block) {
     var vision_obj = block.getFieldValue("vision_obj");
@@ -172,19 +221,19 @@ export const Sengo2VisionDetectedCount = function (block) {
 
 export const Sengo2GetValue = function (block) {
     var vision_obj = block.getFieldValue("vision_obj");
-    var objinfo = block.getFieldValue("objinfo");
+    var vision_res_obj = block.getFieldValue("vision_res_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
     var code =
         "sengo2" +
         ".GetValue(" +
         vision_obj +
         ", " +
-        objinfo +
+        vision_res_obj +
         ", " +
         index +
         ")";
@@ -195,20 +244,51 @@ export const Sengo2GetValue = function (block) {
 };
 
 export const Sengo2VisionObjColor = function (block) {
-    var objinfo = block.getFieldValue("objinfo");
+    var vision_res_obj = block.getFieldValue("vision_res_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
     var code =
         "sengo2" +
         ".GetValue(sengo2_vision_e.kVisionColor, " +
-        objinfo +
+        vision_res_obj +
         ", " +
         index +
         ")";
+
+    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
+
+    return [code, pythonGenerator.ORDER_ATOMIC];
+};
+
+export const Sengo2VisionObjLine = function (block) {
+    var vision_res_obj = block.getFieldValue("vision_res_obj");
+    var index =
+        pythonGenerator.valueToCode(
+            block,
+            "index",
+            pythonGenerator.ORDER_NONE,
+        ) || "1";
+    var code =
+        "sengo2" +
+        ".GetValue(sengo2_vision_e.kVisionLine, " +
+        vision_res_obj +
+        ", " +
+        index +
+        ")";
+
+    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
+
+    return [code, pythonGenerator.ORDER_ATOMIC];
+};
+
+export const Sengo2VisionObjQr = function (block) {
+    var vision_res_obj = block.getFieldValue("vision_res_obj");
+    var code =
+        "sengo2" + ".GetValue(sengo2_vision_e.kVisionQrCode, " + vision_res_obj + ")";
 
     pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
 
@@ -216,16 +296,6 @@ export const Sengo2VisionObjColor = function (block) {
 };
 
 export const Sengo2GetQrValue = function (block) {
-    var objinfo = block.getFieldValue("objinfo");
-    var code =
-        "sengo2" + ".GetValue(sengo2_vision_e.kVisionQrCode, " + objinfo + ")";
-
-    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
-
-    return [code, pythonGenerator.ORDER_ATOMIC];
-};
-
-export const Sengo2GetQrCodeValue = function (block) {
     var code = "sengo2" + ".GetQrCodeValue()";
 
     pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
@@ -233,35 +303,16 @@ export const Sengo2GetQrCodeValue = function (block) {
     return [code, pythonGenerator.ORDER_ATOMIC];
 };
 
-export const Sengo2LineValue = function (block) {
-    var objinfo = block.getFieldValue("objinfo");
-    var index =
-        pythonGenerator.valueToCode(
-            block,
-            "index",
-            pythonGenerator.ORDER_NONE,
-        ) || "0";
-    var code =
-        "sengo2" +
-        ".GetValue(sengo2_vision_e.kVisionLine, " +
-        objinfo +
-        ", " +
-        index +
-        ")";
 
-    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
-
-    return [code, pythonGenerator.ORDER_ATOMIC];
-};
 
 export const Sengo2DetectedColor = function (block) {
-    var ColorLabel = block.getFieldValue("ColorLabel");
+    var ColorLabel = block.getFieldValue("vision_card_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
 
     var code =
         "(sengo2" +
@@ -277,13 +328,13 @@ export const Sengo2DetectedColor = function (block) {
 };
 
 export const Sengo2DetectedBlob = function (block) {
-    var ColorLabel = block.getFieldValue("ColorLabel");
+    var ColorLabel = block.getFieldValue("vision_card_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
 
     var code =
         "(sengo2" +
@@ -299,13 +350,13 @@ export const Sengo2DetectedBlob = function (block) {
 };
 
 export const Sengo2DetectedCard = function (block) {
-    var card = block.getFieldValue("card");
+    var card = block.getFieldValue("vision_card_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
 
     var code =
         "(sengo2" +
@@ -321,13 +372,13 @@ export const Sengo2DetectedCard = function (block) {
 };
 
 export const Sengo2Detected20Class = function (block) {
-    var card = block.getFieldValue("card");
+    var card = block.getFieldValue("vision_card_obj");
     var index =
         pythonGenerator.valueToCode(
             block,
             "index",
             pythonGenerator.ORDER_NONE,
-        ) || "0";
+        ) || "1";
 
     var code =
         "(sengo2" +

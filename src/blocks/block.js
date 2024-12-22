@@ -429,9 +429,9 @@ export const Sengo2VisionSetAprilTagMode = {
             .appendField("  " + ZhHansMsg.SENGO2_VISION_TAG_CODE)
             .appendField(
                 new Blockly.FieldDropdown([
-                    ["36H11", "sengo2_vision_e.kVisionModeFamily36H11"],
-                    ["16H5", "sengo2_vision_e.kVisionModeFamily16H5"],
-                    ["25H9", "sengo2_vision_e.kVisionModeFamily25H9"],
+                    ["36H11", "2"],
+                    ["16H5", "0"],
+                    ["25H9", "1"],
                 ]),
                 "mode",
             );
@@ -624,7 +624,7 @@ export const Sengo2DetectedColor = {
             .appendField(
                 new Blockly.FieldDropdown([
                     [
-                        ZhHansMsg.SENGO2_VISION_VISIONCARD,
+                        ZhHansMsg.SENGO2_VISION_VISIONCOLOR,
                         "sengo2_vision_e.kVisionColor",
                     ],
                 ]),
@@ -655,17 +655,18 @@ export const Sengo2DetectedBlob = {
             .appendField(ZhHansMsg.SENGO2_VISION_EN)
             .appendField(
                 new Blockly.FieldDropdown([
-                    [ZhHansMsg.SENGO2_VISION_VISIONCARD, "sengo2_vision_e.kVisionBlob"],
+                    [ZhHansMsg.SENGO2_VISION_VISIONBLOB, "sengo2_vision_e.kVisionBlob"],
                 ]),
                 "vision_obj",
             )
-            .appendField(ZhHansMsg.SENGO2_VISION_DETECTED_1)
+            .appendField(ZhHansMsg.SENGO2_VISION_DETECTED)
             .appendField(
                 new Blockly.FieldDropdown(
                     vision_obj_card_dict()["sengo2_vision_e.kVisionBlob"],
                 ),
                 "vision_card_obj",
-            );
+            )
+            .appendField(ZhHansMsg.SENGO2_VISION_BLOCK);
         this.appendValueInput("index")
             .setCheck("Number")
             .appendField(ZhHansMsg.SENGO2_VISION_RESULT_1);
