@@ -3,20 +3,7 @@ export const Sengo2Begin = function (block) {
     var mode = block.getFieldValue("mode_obj");
     var addr = block.getFieldValue("addr_obj");
 
-    pythonGenerator.definitions_["import_Sentry"] = "from Sentry import *";
-
-    pythonGenerator.definitions_["sengo2_vision_e"] = `class sengo2_vision_e:
-    kVisionColor = 1
-    kVisionBlob = 2
-    kVisionAprilTag = 3
-    kVisionLine = 4
-    kVisionLearning = 5
-    kVisionCard = 6
-    kVisionFace = 7
-    kVision20Classes = 8
-    kVisionQrCode = 9
-    kVisionMotionDetect = 11
-    kVisionMaxType = 12`;
+    pythonGenerator.definitions_["import_Sentry"] = "from Sengo2 import *";
 
     if (mode == "uart2") {
         pythonGenerator.definitions_["import_UART"] = "from machine import UART";
@@ -25,11 +12,11 @@ export const Sengo2Begin = function (block) {
     }
     else{
         pythonGenerator.definitions_["import_IIC"] = "from machine import I2C";
-        pythonGenerator.definitions_["init_IIC"] = `${mode} = I2C(0,freq=400000)`;
+        pythonGenerator.definitions_["init_IIC"] = `${mode} = I2C(1,freq=400000)`;
     }
 
     pythonGenerator.definitions_["init_Sengo2"] =
-        `sengo2  = Sentry(0x7, ${addr} )`;
+        `sengo2  = Sengo2(${addr} )`;
     var code = `sengo2.begin(${mode})\n`;
     return code;
 };
