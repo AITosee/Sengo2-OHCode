@@ -1,7 +1,7 @@
 
-from SentryBase import SentryBase
-from SentryBase import LOG_ERROR,LOG_DEBUG
-from SentryBase import (sentry_obj_info_e,
+from Sentry import SentryBase
+from Sentry import LOG_ERROR,LOG_DEBUG
+from Sentry import (sentry_obj_info_e,
                         sentry_mode_e,
                         sentry_led_color_e,
                         color_label_e,

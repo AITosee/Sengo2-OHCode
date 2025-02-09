@@ -255,9 +255,9 @@ class SentryI2CMethod:
             self.__logger(self.__class__.__name__, *arg)
 
     def Set(self, reg_address, value):
-        data = ustruct.pack('<b', value)
-        self.__communication_port.writeto_mem(
-            self.__mu_address, reg_address, data)
+        data = ustruct.pack('<bb', reg_address, value)
+        self.__communication_port.writeto(
+            self.__mu_address, data)
 
         self.Logger(LOG_DEBUG, 'set-> reg:%#x var:%#x',
                     reg_address, value)
