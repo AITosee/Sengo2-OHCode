@@ -239,10 +239,12 @@ class VisionState:
 
 
 class SentryI2CMethod:
-    def __init__(self, address, communication_port, logger=None):
+    def __init__(self, address, communication_port, logger=None, VisionQrCode = 9, VisionMaxType = 12):
         self.__mu_address = address
         self.__communication_port = communication_port
         self.__logger = logger
+        self.kVisionQrCode = VisionQrCode
+        self.kVisionMaxType = VisionMaxType
 
         if address not in communication_port.scan():
             raise ValueError(
@@ -376,10 +378,12 @@ class SentryI2CMethod:
 
 
 class SentryUartMethod:
-    def __init__(self, address, communication_port, logger=None):
+    def __init__(self, address, communication_port, logger=None, VisionQrCode = 9, VisionMaxType = 12):
         self.__mu_address = address
         self.__communication_port = communication_port
         self.__logger = logger
+        self.kVisionQrCode = VisionQrCode
+        self.kVisionMaxType = VisionMaxType
         # Setting serial port parameters
         self.__communication_port.init(timeout=1000, timeout_char=10)
 
@@ -741,12 +745,12 @@ class SentryBase:
     def begin(self, communication_port=None):
         if 'I2C' == communication_port.__class__.__name__ or 'MicroBitI2C' == communication_port.__class__.__name__:
             self.__stream = SentryI2CMethod(
-                self.__address, communication_port, logger=self.__logger)
+                self.__address, communication_port, logger=self.__logger, VisionQrCode = self.kVisionQrCode, VisionMaxType = self.kVisionMaxType)
             self.Logger(LOG_INFO, 'Begin I2C mode succeed!')
 
         elif 'UART' == communication_port.__class__.__name__:
             self.__stream = SentryUartMethod(
-                self.__address, communication_port, logger=self.__logger)
+                self.__address, communication_port, logger=self.__logger, VisionQrCode = self.kVisionQrCode, VisionMaxType = self.kVisionMaxType)
             self.Logger(LOG_INFO, 'Begin UART mode succeed!')
 
         elif communication_port == None:
