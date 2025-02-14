@@ -1,12 +1,7 @@
 
 from Sentry import SentryBase
 from Sentry import LOG_ERROR,LOG_DEBUG
-from Sentry import (sentry_obj_info_e,
-                        sentry_mode_e,
-                        sentry_led_color_e,
-                        color_label_e,
-                        apriltag_vision_mode_e,
-                        class20_label_e)
+from Sentry import sentry_obj_info_e,sentry_mode_e,sentry_led_color_e,color_label_e,apriltag_vision_mode_e,class20_label_e
 
 # sengo2 vision
 class sengo2_vision_e:
