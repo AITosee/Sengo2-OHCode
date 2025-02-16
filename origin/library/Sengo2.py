@@ -63,8 +63,6 @@ except ImportError:
     from Sentry import LOG_ERROR,LOG_DEBUG
     from Sentry import sentry_obj_info_e,sentry_led_color_e,color_label_e,apriltag_vision_mode_e,class20_label_e
 
-
-
     class Sengo2(SentryBase):
         SENGO2_DEVICE_ID = 0x07
         def __init__(self, address=0x60, log_level=LOG_ERROR):
