@@ -38,25 +38,11 @@ try :
     
     class Sengo2(SentryBase):
         SENGO2_DEVICE_ID = 0x07
-        def __init__(self, address=0x60, log_level=LOG_ERROR):
+        def __init__(self, address=0x60):
             super().__init__(self.SENGO2_DEVICE_ID,address)
 
         def VisionSetMode(self, vision_type, mode):
-
-            err = self.Set(0x20, vision_type)
-            if err:
-                return err
-            err, vision_config_reg_value = self.Get(0x22)
-            if err:
-                return err
-            
-            _mode = vision_config_reg_value&0x0f
-            if _mode != mode:
-                vision_config_reg_value &= 0xf0
-                vision_config_reg_value |= mode
-                
-                err = self.Set(0x22, vision_config_reg_value)
-            return err
+            pass
 
 except ImportError:
     from Sentry import SentryBase
