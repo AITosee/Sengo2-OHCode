@@ -1,7 +1,7 @@
 {
     "name": "sengo2-ohcode",
     "description": "适用于ohcode的Sentgo1视觉传感器库",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "scripts": {
         "build:dev": "webpack --config=./webpack-config/webpack.dev.js",
         "build:prod": "webpack --config=./webpack-config/webpack.prod.js"

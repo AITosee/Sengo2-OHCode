@@ -1,14 +1,5 @@
 import { ZhHansMsg } from "../language/zh-hans";
 
-export const white_balance_objs = function () {
-    return [
-        [ZhHansMsg.SENGO2_AUTO, "sentry_camera_white_balance_e.kAutoWhiteBalance"],
-        [ZhHansMsg.SENGO2_LOCK_AWB, "sentry_camera_white_balance_e.sentry_camera_white_balance_e.kWhiteLight"],
-        [ZhHansMsg.SENGO2_WHITE_LIGHT, "sentry_camera_white_balance_e.kYellowLight"],
-        [ZhHansMsg.SENGO2_YELLOW_LIGHT, "sentry_camera_white_balance_e.kWhiteBalanceCalibrating"],
-    ];
-};
-
 export const vision_res_objs = function () {
     return [
         [ZhHansMsg.SENGO2_STATE_VALUE_X, "sentry_obj_info_e.kXValue"],
@@ -98,41 +89,41 @@ export const sengo2_vision_custom = function () {
 };
 export const sengo2_vision_20class_objs = function () {
     return [
-        [ZhHansMsg.SENGO2_CLASS20_AIRPLANE, "sentry_class20_label_e.kAirplane"],
-        [ZhHansMsg.SENGO2_CLASS20_BICYCLE, "sentry_class20_label_e.kBicycle"],
-        [ZhHansMsg.SENGO2_CLASS20_BIRD, "sentry_class20_label_e.kBird"],
-        [ZhHansMsg.SENGO2_CLASS20_BOAT, "sentry_class20_label_e.kBoat"],
-        [ZhHansMsg.SENGO2_CLASS20_BOTTLE, "sentry_class20_label_e.kBottle"],
-        [ZhHansMsg.SENGO2_CLASS20_BUS, "sentry_class20_label_e.kBus"],
-        [ZhHansMsg.SENGO2_CLASS20_CAR, "sentry_class20_label_e.kCar"],
-        [ZhHansMsg.SENGO2_CLASS20_CAT, "sentry_class20_label_e.kCat"],
-        [ZhHansMsg.SENGO2_CLASS20_CHAIR, "sentry_class20_label_e.kChair"],
-        [ZhHansMsg.SENGO2_CLASS20_COW, "sentry_class20_label_e.kCow"],
-        [ZhHansMsg.SENGO2_CLASS20_TABLE, "sentry_class20_label_e.kDiningTable"],
-        [ZhHansMsg.SENGO2_CLASS20_DOG, "sentry_class20_label_e.kDog"],
-        [ZhHansMsg.SENGO2_CLASS20_HORSE, "sentry_class20_label_e.kHorse"],
-        [ZhHansMsg.SENGO2_CLASS20_MOTORBIKE, "sentry_class20_label_e.kMotorBike"],
-        [ZhHansMsg.SENGO2_CLASS20_PERSON, "sentry_class20_label_e.kPerson"],
-        [ZhHansMsg.SENGO2_CLASS20_PLANT, "sentry_class20_label_e.kPottedPlant"],
-        [ZhHansMsg.SENGO2_CLASS20_SHEEP, "sentry_class20_label_e.kSheep"],
-        [ZhHansMsg.SENGO2_CLASS20_SOFA, "sentry_class20_label_e.kSofa"],
-        [ZhHansMsg.SENGO2_CLASS20_TRAIN, "sentry_class20_label_e.kTrain"],
-        [ZhHansMsg.SENGO2_CLASS20_MONITOR, "sentry_class20_label_e.kTvMonitor"],
+        [ZhHansMsg.SENGO2_CLASS20_AIRPLANE, "class20_label_e.kAirplane"],
+        [ZhHansMsg.SENGO2_CLASS20_BICYCLE, "class20_label_e.kBicycle"],
+        [ZhHansMsg.SENGO2_CLASS20_BIRD, "class20_label_e.kBird"],
+        [ZhHansMsg.SENGO2_CLASS20_BOAT, "class20_label_e.kBoat"],
+        [ZhHansMsg.SENGO2_CLASS20_BOTTLE, "class20_label_e.kBottle"],
+        [ZhHansMsg.SENGO2_CLASS20_BUS, "class20_label_e.kBus"],
+        [ZhHansMsg.SENGO2_CLASS20_CAR, "class20_label_e.kCar"],
+        [ZhHansMsg.SENGO2_CLASS20_CAT, "class20_label_e.kCat"],
+        [ZhHansMsg.SENGO2_CLASS20_CHAIR, "class20_label_e.kChair"],
+        [ZhHansMsg.SENGO2_CLASS20_COW, "class20_label_e.kCow"],
+        [ZhHansMsg.SENGO2_CLASS20_TABLE, "class20_label_e.kDiningTable"],
+        [ZhHansMsg.SENGO2_CLASS20_DOG, "class20_label_e.kDog"],
+        [ZhHansMsg.SENGO2_CLASS20_HORSE, "class20_label_e.kHorse"],
+        [ZhHansMsg.SENGO2_CLASS20_MOTORBIKE, "class20_label_e.kMotorBike"],
+        [ZhHansMsg.SENGO2_CLASS20_PERSON, "class20_label_e.kPerson"],
+        [ZhHansMsg.SENGO2_CLASS20_PLANT, "class20_label_e.kPottedPlant"],
+        [ZhHansMsg.SENGO2_CLASS20_SHEEP, "class20_label_e.kSheep"],
+        [ZhHansMsg.SENGO2_CLASS20_SOFA, "class20_label_e.kSofa"],
+        [ZhHansMsg.SENGO2_CLASS20_TRAIN, "class20_label_e.kTrain"],
+        [ZhHansMsg.SENGO2_CLASS20_MONITOR, "class20_label_e.kTvMonitor"],
     ];
 };
 
 export const sengo2_vision_card_objs = function () {
     return [
-        [ZhHansMsg.SENGO2_CARD_FORWARD, "sentry2_card_label_e.kCardForward"],
-        [ZhHansMsg.SENGO2_CARD_LEFT, "sentry2_card_label_e.kCardLeft"],
-        [ZhHansMsg.SENGO2_CARD_RIGHT, "sentry2_card_label_e.kCardRight"],
-        [ZhHansMsg.SENGO2_CARD_TURN_AROUND, "sentry2_card_label_e.kCardTurnAround"],
-        [ZhHansMsg.SENGO2_CARD_PARK, "sentry2_card_label_e.kCardPark"],
-        [ZhHansMsg.SENGO2_CARD_GREEN_LIGHT, "sentry2_card_label_e.kCardGreenLight"],
-        [ZhHansMsg.SENGO2_CARD_RED_LIGHT, "sentry2_card_label_e.kCardRedLight"],
-        [ZhHansMsg.SENGO2_CARD_SPEED_40, "sentry2_card_label_e.kCardSpeed40"],
-        [ZhHansMsg.SENGO2_CARD_SPEED_60, "sentry2_card_label_e.kCardSpeed60"],
-        [ZhHansMsg.SENGO2_CARD_SPEED_80, "sentry2_card_label_e.kCardSpeed80"],
+        [ZhHansMsg.SENGO2_CARD_FORWARD, "sengo2_card_label_e.kCardForward"],
+        [ZhHansMsg.SENGO2_CARD_LEFT, "sengo2_card_label_e.kCardLeft"],
+        [ZhHansMsg.SENGO2_CARD_RIGHT, "sengo2_card_label_e.kCardRight"],
+        [ZhHansMsg.SENGO2_CARD_TURN_AROUND, "sengo2_card_label_e.kCardTurnAround"],
+        [ZhHansMsg.SENGO2_CARD_PARK, "sengo2_card_label_e.kCardPark"],
+        [ZhHansMsg.SENGO2_CARD_GREEN_LIGHT, "sengo2_card_label_e.kCardGreenLight"],
+        [ZhHansMsg.SENGO2_CARD_RED_LIGHT, "sengo2_card_label_e.kCardRedLight"],
+        [ZhHansMsg.SENGO2_CARD_SPEED_40, "sengo2_card_label_e.kCardSpeed40"],
+        [ZhHansMsg.SENGO2_CARD_SPEED_60, "sengo2_card_label_e.kCardSpeed60"],
+        [ZhHansMsg.SENGO2_CARD_SPEED_80, "sengo2_card_label_e.kCardSpeed80"],
     ];
 };
 
@@ -245,23 +236,6 @@ export const Sengo2VisionSetStatus = {
     },
 };
 
-export const Sengo2SetAWB = {
-    init: function () {
-        this.appendDummyInput()
-            .appendField(
-                ZhHansMsg.SENGO2_SET +
-                    ZhHansMsg.SENGO2_NAME +
-                    ZhHansMsg.SENGO2_CAMERA_SET_AWB,
-            )
-            .appendField(
-                new Blockly.FieldDropdown(white_balance_objs()),
-                "awb_obj",
-            );
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour("#EF5411");
-    },
-};
 
 export const Sengo2VisionSetParamNum = {
     init: function () {
