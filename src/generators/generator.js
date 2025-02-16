@@ -189,7 +189,7 @@ export const Sengo2VisionSetParam = function (block) {
         "sengo2" +
         ".SetParam(" +
         vision_obj +
-        "[0, 0, 0, 0," +
+        ", [0, 0, 0, 0," +
         lable +
         "]" +
         ", " +
