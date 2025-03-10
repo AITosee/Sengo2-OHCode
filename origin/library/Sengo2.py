@@ -26,10 +26,10 @@ class sengo2_card_label_e:
     kCardSpeed80 = 10
 
 try :
-    from Sentry import Sentry as SentryBase
-    from Sentry import sentry_color_label_e as color_label_e
-    from Sentry import sentry_class20_label_e as class20_label_e
-    from Sentry import sentry_obj_info_e,sentry_led_color_e
+    from SentryBase import Sentry as SentryBase
+    from SentryBase import sentry_color_label_e as color_label_e
+    from SentryBase import sentry_class20_label_e as class20_label_e
+    from SentryBase import sentry_obj_info_e,sentry_led_color_e
 
     class apriltag_vision_mode_e:
         kVisionModeFamily16H5 = 0

@@ -561,9 +561,9 @@ class SentryUartMethod:
                         if self.kVisionQrCode == vision_type:
                             vision_state.detect = 1
                         else:
-                            vision_state.detect = stop_id-start_id+1
+                            vision_state.detect = stop_id+1
 
-                        for i in range(vision_state.detect):
+                        for i in range(stop_id-start_id+1):
                             v_id = i+start_id-1
                             vision_state.result[v_id].data1 = data[10 *
                                                                    i + 6] << 8 | data[10 * i + 7]
