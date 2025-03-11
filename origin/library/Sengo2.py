@@ -26,10 +26,10 @@ class sengo2_card_label_e:
     kCardSpeed80 = 10
 
 try :
-    from SentryBase import Sentry as SentryBase
-    from SentryBase import sentry_color_label_e as color_label_e
-    from SentryBase import sentry_class20_label_e as class20_label_e
-    from SentryBase import sentry_obj_info_e,sentry_led_color_e
+    from Sentry import Sentry as SentryBase
+    from Sentry import sentry_color_label_e as color_label_e
+    from Sentry import sentry_class20_label_e as class20_label_e
+    from Sentry import sentry_obj_info_e,sentry_led_color_e
 
     class apriltag_vision_mode_e:
         kVisionModeFamily16H5 = 0
@@ -45,9 +45,9 @@ try :
             pass
 
 except ImportError:
-    from Sentry import SentryBase
-    from Sentry import LOG_ERROR,LOG_DEBUG
-    from Sentry import sentry_obj_info_e,sentry_led_color_e,color_label_e,apriltag_vision_mode_e,class20_label_e
+    from SentryBase import SentryBase
+    from SentryBase import LOG_ERROR,LOG_DEBUG
+    from SentryBase import sentry_obj_info_e,sentry_led_color_e,color_label_e,apriltag_vision_mode_e,class20_label_e
 
     class Sengo2(SentryBase):
         SENGO2_DEVICE_ID = 0x07
