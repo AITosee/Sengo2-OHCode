@@ -99,16 +99,16 @@ export const sengo2_vision_20class_objs = function () {
         [ZhHansMsg.SENGO2_CLASS20_CAT, "class20_label_e.kCat"],
         [ZhHansMsg.SENGO2_CLASS20_CHAIR, "class20_label_e.kChair"],
         [ZhHansMsg.SENGO2_CLASS20_COW, "class20_label_e.kCow"],
-        [ZhHansMsg.SENGO2_CLASS20_TABLE, "class20_label_e.kDiningTable"],
+        [ZhHansMsg.SENGO2_CLASS20_TABLE, "class20_label_e.kTable"],
         [ZhHansMsg.SENGO2_CLASS20_DOG, "class20_label_e.kDog"],
         [ZhHansMsg.SENGO2_CLASS20_HORSE, "class20_label_e.kHorse"],
         [ZhHansMsg.SENGO2_CLASS20_MOTORBIKE, "class20_label_e.kMotorBike"],
         [ZhHansMsg.SENGO2_CLASS20_PERSON, "class20_label_e.kPerson"],
-        [ZhHansMsg.SENGO2_CLASS20_PLANT, "class20_label_e.kPottedPlant"],
+        [ZhHansMsg.SENGO2_CLASS20_PLANT, "class20_label_e.kPlant"],
         [ZhHansMsg.SENGO2_CLASS20_SHEEP, "class20_label_e.kSheep"],
         [ZhHansMsg.SENGO2_CLASS20_SOFA, "class20_label_e.kSofa"],
         [ZhHansMsg.SENGO2_CLASS20_TRAIN, "class20_label_e.kTrain"],
-        [ZhHansMsg.SENGO2_CLASS20_MONITOR, "class20_label_e.kTvMonitor"],
+        [ZhHansMsg.SENGO2_CLASS20_MONITOR, "class20_label_e.kMonitor"],
     ];
 };
 
