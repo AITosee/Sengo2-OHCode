@@ -10,6 +10,11 @@ export const Sengo2Begin = function (block) {
             "from machine import UART";
         pythonGenerator.definitions_["init_UART"] =
             `${mode} = UART(2, baudrate=115200)`;
+    } else if (mode == "softi2c") {
+        pythonGenerator.definitions_["import_IIC"] =
+            "from machine import Pin,SoftI2C";
+        pythonGenerator.definitions_["init_IIC"] =
+            `${mode} = SoftI2C(scl=Pin(13), sda=Pin(14), freq=400000)`;
     } else {
         pythonGenerator.definitions_["import_IIC"] = "from machine import I2C";
         pythonGenerator.definitions_["init_IIC"] =
