@@ -1,8 +1,8 @@
-__version__ = 'SentryBase v1.0.3'
+__version__ = 'SentryBase v1.0.6'
 __license__ = 'http://unlicense.org'
 
 import ustruct  # pylint: disable=import-error
-from time import sleep_ms  # pylint: disable=no-name-in-module
+from asyncio import sleep_ms  # pylint: disable=no-name-in-module
 
 SENTRY_FIRMWARE_VERSION = 0xFF
 
@@ -263,30 +263,43 @@ class SentryI2CMethod:
             self.__logger(self.__class__.__name__, *arg)
 
     def Set(self, reg_address, value):
-        data = ustruct.pack('<bb', reg_address, value)
-        self.__communication_port.writeto(
-            self.__mu_address, data)
+        try:
+            data = ustruct.pack('<bb', reg_address, value)
+            self.__communication_port.writeto(
+                self.__mu_address, data)
 
-        self.Logger(LOG_DEBUG, 'set-> reg:%#x var:%#x',
-                    reg_address, value)
+            self.Logger(LOG_DEBUG, 'set-> reg:%#x var:%#x',
+                        reg_address, value)
 
-        return SENTRY_OK
+            return SENTRY_OK
+        except Exception as e:
+            self.Logger(LOG_ERROR, 'Set-> reg:%#x error:%s',
+                        reg_address, str(e))
+
+            return SENTRY_FAIL
 
     def Get(self, reg_address):
-        data = ustruct.pack('<b', reg_address)
-        self.__communication_port.writeto(self.__mu_address, data)
+        try:
+            data = ustruct.pack('<b', reg_address)
+            self.__communication_port.writeto(self.__mu_address, data)
 
-        value = self.__communication_port.readfrom(
-            self.__mu_address, 1)
-        if value:
-            self.Logger(LOG_DEBUG, 'Get-> reg:%#x var:%#x',
-                        reg_address, value[0])
-            return (SENTRY_OK, value[0])
-        else:
-            self.Logger(LOG_ERROR, 'Get-> reg:%#x TimeOut!',
-                        reg_address)
+            value = self.__communication_port.readfrom(
+                self.__mu_address, 1)
+            if value:
+                self.Logger(LOG_DEBUG, 'Get-> reg:%#x var:%#x',
+                            reg_address, value[0])
+                return (SENTRY_OK, value[0])
+            else:
+                self.Logger(LOG_ERROR, 'Get-> reg:%#x TimeOut!',
+                            reg_address)
 
-            return (SENTRY_READ_TIMEOUT, 0)
+                return (SENTRY_READ_TIMEOUT, 0)
+        except Exception as e:
+            self.Logger(LOG_ERROR, 'Get-> reg:%#x error:%s',
+                        reg_address, str(e))
+
+            return (SENTRY_FAIL, 0)
+
 
     def __get_result_data(self, kRegResultDataL, kRegResultDataH):
         err, result_data_tmp1 = self.Get(kRegResultDataL)
@@ -410,48 +423,73 @@ class SentryUartMethod:
         else:
             return SENTRY_PROTOC_CHECK_ERROR
     def __pkg_transmit(self, data):
-        if self.__communication_port.any():
-            # Clear cache before sending
+        # 清除发送前的缓存
+        try:
+            # 尝试清空缓冲区
             self.__communication_port.read()
+        except:
+            pass
+        
+        # 发送数据
         self.__communication_port.write(data)
 
+        # 等待接收数据
         count_ms = 0
-        # The shortest receiving time of serial protocol is 6 bytes
-        while self.__communication_port.any() < 6:
+        # 使用超时机制代替any()检查
+        max_wait_time = 400  # 最大等待时间为400ms
+        
+        # 等待接收足够的数据
+        while count_ms < max_wait_time:
+            sleep_ms(1)
             count_ms += 1
-            # The maximum waiting time for receiving data is 1s
-            if count_ms < 400:
-                sleep_ms(1)
-            else:
-                self.Logger(LOG_ERROR, 'Waiting for reception timeOut!!!'+str(self.__communication_port.read()))
-                return (SENTRY_PROTOC_TIMEOUT, [])
-
-        self.Logger(LOG_DEBUG, 'Waiting for reception takes %dms', count_ms)
-
-        data_len = 0
-        data_list = []
-        for _ in range(self.__communication_port.any()):
-            data_list.append(self.__communication_port.read(1)[0])
-            if data_list[0] == SENTRY_PROTOC_START:
-                data_list.append(self.__communication_port.read(1)[0])
-                data_len = data_list[1]
-                data_list += list(self.__communication_port.read(data_len-2))
-                break
-
-        if self.__logger:
-            self.Logger(LOG_DEBUG, '    rev-> %s',
-                        ' '.join(['%02x' % b for b in data_list]))
-
-        if data_len > 0 and data_len != len(data_list):
-            return (SENTRY_PROTOC_CHECK_ERROR, [])
-
-        if SENTRY_PROTOC_END != data_list[-1]:
-            return (SENTRY_PROTOC_CHECK_ERROR, [])
-
-        if self.__cheak(data_list) != SENTRY_PROTOC_OK:
-            return (SENTRY_PROTOC_CHECK_ERROR, [])
-
-        return (SENTRY_PROTOC_OK, tuple(data_list[3:]))
+            
+            # 尝试读取前两个字节来判断数据包长度
+            try:
+                first_byte = self.__communication_port.read(1)
+                if not first_byte:  # 如果没有读到数据
+                    continue
+                
+                if first_byte[0] == SENTRY_PROTOC_START:
+                    # 读取长度字节
+                    len_byte = self.__communication_port.read(1)
+                    if not len_byte:  # 如果没有读到长度字节
+                        continue
+                    
+                    data_len = len_byte[0]
+                    # 确保有足够的时间读取剩余数据
+                    sleep_ms(10)
+                    
+                    # 读取剩余数据
+                    remaining_data = self.__communication_port.read(data_len-2)
+                    if len(remaining_data) == data_len-2:
+                        # 构建完整数据列表
+                        data_list = [first_byte[0], len_byte[0]] + list(remaining_data)
+                        
+                        self.Logger(LOG_DEBUG, 'Waiting for reception takes %dms', count_ms)
+                        
+                        if self.__logger:
+                            self.Logger(LOG_DEBUG, '    rev-> %s',
+                                      ' '.join(['%02x' % b for b in data_list]))
+                        
+                        if SENTRY_PROTOC_END != data_list[-1]:
+                            return (SENTRY_PROTOC_CHECK_ERROR, [])
+                        
+                        if self.__cheak(data_list) != SENTRY_PROTOC_OK:
+                            return (SENTRY_PROTOC_CHECK_ERROR, [])
+                        
+                        return (SENTRY_PROTOC_OK, tuple(data_list[3:]))
+            except:
+                pass
+                
+        # 超时处理
+        self.Logger(LOG_ERROR, 'Waiting for reception timeOut!!!')
+        try:
+            # 尝试读取剩余所有数据并记录
+            remaining = self.__communication_port.read()
+            self.Logger(LOG_ERROR, str(remaining))
+        except:
+            pass
+        return (SENTRY_PROTOC_TIMEOUT, [])
           
 
     def Set(self, reg_address, value):
@@ -751,7 +789,7 @@ class SentryBase:
         return SENTRY_OK
 
     def begin(self, communication_port=None):
-        if 'I2C' == communication_port.__class__.__name__ or 'MicroBitI2C' == communication_port.__class__.__name__:
+        if communication_port.__class__.__name__ in ['I2C','SoftI2C','MicroBitI2C']:
             self.__stream = SentryI2CMethod(
                 self.__address, communication_port, logger=self.__logger, VisionQrCode = self.kVisionQrCode, VisionMaxType = self.kVisionMaxType)
             self.Logger(LOG_INFO, 'Begin I2C mode succeed!')
@@ -916,6 +954,9 @@ class SentryBase:
             return 0
 
         vision_state = self.__vision_states[vision_type-1]
+
+        while SENTRY_OK != self.__SensorLockkReg(False):
+            pass
 
         err, frame = self.__stream.Get(kRegFrameCount)
         if err:
